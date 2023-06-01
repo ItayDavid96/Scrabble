@@ -15,6 +15,7 @@ public class BloomFilter {
 
     public BloomFilter(int bitSetSize, String... algorithms) {
         this.bitSet = new BitSet(bitSetSize);
+        //this.bitSet = new BitSet();
         this.hashFunctions = new ArrayList<>();
         for (String alg : algorithms) {
             MessageDigest md;
@@ -32,6 +33,7 @@ public class BloomFilter {
             byte[] digest = md.digest(word.getBytes());
             BigInteger bi = new BigInteger(1, digest);
             int index = bi.intValue() % bitSet.size();
+            //int index = bi.intValue() % 256;
             bitSet.set(index < 0 ? index * -1 : index, true);
         }
     }
@@ -41,6 +43,7 @@ public class BloomFilter {
             byte[] digest = md.digest(word.getBytes());
             BigInteger bi = new BigInteger(1, digest);
             int index = bi.intValue() % bitSet.size();
+            //int index = bi.intValue() % 256;
             if (!bitSet.get(index < 0 ? index * -1 : index))  //if bit is 1 (aka->true) then word can't be in book.
                 return false;
         }
