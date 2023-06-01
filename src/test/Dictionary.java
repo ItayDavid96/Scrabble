@@ -42,7 +42,6 @@ public class Dictionary {
     }
 
     public boolean query(String word) {
-        // TODO: use the corresponded Algo with the action - if using lru use the Algo "MD5"(?) and for lfu "SHA1"(?)
         if (existingWords.query(word))  // return true if word in existing words
             return true;
         else if (nonExistingWords.query(word)) // else return false if word in non-existing words.
